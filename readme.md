@@ -2,7 +2,7 @@
 
 This is a spree extension to enable downloadable products (ebooks, MP3s, videos, etc).
 
-The master branch is compatible with Spree 1.2.x. 1.0.x - 1.1.x versions are available, check the `Versionfile`.
+The master branch is compatible with Spree 2.0.0(master) 1.2.x. 1.0.x - 1.1.x versions are available, check the `Versionfile`.
 
 This documentation is not complete and possibly out of date in some cases. There are features that have been implemented that are not documented here, please look at the source for complete documentation.
 
@@ -11,9 +11,9 @@ The idea is simple. You attach a file to a Product (or a Variant of this Product
 * The table structure of spree_core is not touched. Spree digital lives parallel to spree_core and does change the existing database, except adding two new tables.
 * The download links will be sent via email in the order confirmation (or "resend" from the admin section). The links do *not* appear in the order "overview" that the customer sees. Adding download buttons to `OrdersController#show` is easy, [check out this gist](https://gist.github.com/3187793#file_add_spree_digital_buttons_to_invoice.rb).
 * Once the order is checked-out, the download links will immediately be sent (i.e. in the order confirmation). You'll have to modify the system to support 'delayed' payments (like a billable account).
-* You should create a ShippingMethod based on the Digital Delivery calculator type. The default cost for digital delivery is 0, but you can define a flat rate (creating a per-item digital delivery fee would be possible as well). Checkout the [source code](https://github.com/halo/spree_digital/blob/master/app/models/spree/calculator/digital_delivery.rb) for the Digital Delivery calculator for more information.
+* You should create a ShippingMethod based on the Digital Delivery calculator type. The default cost for digital delivery is 0, but you can define a flat rate (creating a per-item digital delivery fee would be possible as well). Checkout the [source code](https://github.com/xwaynec/spree_digital/blob/master/app/models/spree/calculator/digital_delivery.rb) for the Digital Delivery calculator for more information.
 * One may buy several items of the same digital product in one cart. The customer will simply receive several links by doing so. This allows customer's to legally purchase multiple copies of the same product and maybe give one away to a friend.
-* You can set how many times (clicks) the users downloads will work. You can also set how long the users links will work (expiration). For more information, [check out the preferences object](https://github.com/halo/spree_digital/blob/master/lib/spree/spree_digital_configuration.rb)
+* You can set how many times (clicks) the users downloads will work. You can also set how long the users links will work (expiration). For more information, [check out the preferences object](https://github.com/xwaynec/spree_digital/blob/master/lib/spree/spree_digital_configuration.rb)
 * The file `views/order_mailer/confirm_email.text.erb` is the only thing that should need customization. If you are looking for HTML emails, [this branch of spree-html-email](http://github.com/iloveitaly/spree-html-email) supports spree_digital
 * A purchased product can be downloaded even if you disable the product immediately. You would have to remove the attached file in your admin section to prevent people from downloading purchased products.
 * File are uploaded to `rails_root/private`. Make sure it's symlinked in case you're using Capistrano. If you want to change the upload path, [check out this gist](https://gist.github.com/3187793#file_spree_digital_path_change_decorator.rb)
@@ -25,7 +25,7 @@ The idea is simple. You attach a file to a Product (or a Variant of this Product
 Add this line to your gemfile:
 
 ```shell
-gem 'spree_digital', :git => 'git://github.com/halo/spree_digital.git', :branch => 'master'
+gem 'spree_digital', :git => 'git://github.com/xwaynec/spree_digital.git', :branch => 'master'
 ```
 
 The following terminal commands will copy the migration files to the corresponding directory in your Rails application and apply the migrations to your database.
