@@ -20,8 +20,7 @@ Order Total: <%= number_to_currency @order.total %>
 Download links for digital products
 ============================================================
 
-ATTENTION! Each link will only work a SINGLE TIME!
-           Also, they will only work WITHIN 24 HOURS!
+ATTENTION! Each download link will work FIVE TIMES, then will be disabled
 
 <% for item in @order.line_items %>
 <% if item.digital? %>

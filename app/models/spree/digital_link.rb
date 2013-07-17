@@ -26,9 +26,10 @@ module Spree
     def set_defaults
       self.secret = SecureRandom.hex(15)
       self.access_counter = 0
+      self.product_key = SecureRandom.uuid.upcase#.insert(8, self.id.to_s)
     end
 
-    attr_accessible :digital, :line_item, :secret
+    attr_accessible :digital, :line_item, :secret, :product_key
 
   end
 end
