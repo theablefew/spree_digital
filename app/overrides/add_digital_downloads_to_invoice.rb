@@ -7,7 +7,7 @@ Deface::Override.new(:virtual_path => "spree/shared/_order_details",
     <% item.digital_links.each do |digital_link| %>
     <% format = File.extname(digital_link.digital.attachment.path).downcase %>
       <%= link_to "Click To Download Your Software", digital_url(:host => Spree::Config.get(:site_url), :secret => digital_link.secret), :class => "btn #{format}" %>
-      License Key: <%= link.product_key %>
+      License Key: <%= digital_link.product_key %>
     <% end %>
   <% end %>
 <% end %>
