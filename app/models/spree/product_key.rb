@@ -3,7 +3,7 @@ module Spree
     belongs_to :digital_link
     attr_accessible :content, :key_is_valid, :activation_count, :activated, :downloaded, :digital_link
     
-    validates_length_of :content, :is => 32
+    validates_length_of :content, :is => 36
     validates :digital_link, :presence => true
     
     before_validation :set_defaults, :on => :create
