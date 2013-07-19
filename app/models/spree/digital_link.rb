@@ -3,6 +3,7 @@ module Spree
     
     belongs_to :digital
     belongs_to :line_item
+    has_one :product_key
     
     validates_length_of :secret, :is => 30
     validates :digital, :presence => true
