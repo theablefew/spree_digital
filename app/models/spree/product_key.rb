@@ -25,10 +25,10 @@ module Spree
     
     # Populating the secret automatically and zero'ing the access_counter (otherwise it might turn out to be NULL)
     def set_defaults
-      self.content => SecureRandom.uuid.upcase, 
-      self.key_is_valid => true, 
-      self.activation_count => 0,
-      self.activated => false,
+      self.content => SecureRandom.uuid.upcase
+      self.key_is_valid => true
+      self.activation_count => 0
+      self.activated => false
       self.downloaded => 0
     end
         

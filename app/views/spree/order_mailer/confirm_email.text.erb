@@ -27,7 +27,7 @@ ATTENTION! Each download link will work FIVE TIMES, then will be disabled
 <%= raw item.variant.name %>:
 <% for link in item.digital_links %>
 <%= digital_url :host => Spree::Config.get(:site_url), :secret => link.secret %>
-License Key: <%= link.product_key %>
+License Key: <%= link.product_key.content %>
 <% end %>
 
 <% end %>
