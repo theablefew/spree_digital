@@ -1,0 +1,41 @@
+<h1>Listing product_keys</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Activation count</th>
+    <th>Valid</th>
+    <th>Activated</th>
+    <th>Downloaded</th>
+    <th>Product</th>
+    <th>Variant</th>
+    <th>Order</th>
+    <th>User</th>
+    <th>Sku</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @product_keys.each do |product_key| %>
+  <tr>
+    <td><%= product_key.content %></td>
+    <td><%= product_key.activation_count %></td>
+    <td><%= product_key.key_is_valid %></td>
+    <td><%= product_key.activated %></td>
+    <td><%= product_key.downloaded %></td>
+    <td><%= product_key.product_id %></td>
+    <td><%= product_key.variant_id %></td>
+    <td><%= product_key.order_id %></td>
+    <td><%= product_key.user_id %></td>
+    <td><%= product_key.sku %></td>
+    <td><%= link_to 'Show', product_key %></td>
+    <td><%= link_to 'Edit', edit_product_key_path(product_key) %></td>
+    <td><%= link_to 'Destroy', product_key, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Product key', new_product_key_path %>
