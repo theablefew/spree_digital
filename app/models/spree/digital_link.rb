@@ -31,7 +31,7 @@ module Spree
     end
     
     def create_product_key
-      product_key.create!(:digital_link => self, :variant => self.digital.variant, :line_item => self.line_item)
+      product_key.create!(:spree_digital_link_id => self.id, :variant => self.digital.variant, :line_item => self.line_item)
     end
 
     attr_accessible :digital, :line_item, :secret, :product_key
