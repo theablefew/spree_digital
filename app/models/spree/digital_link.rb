@@ -29,7 +29,7 @@ module Spree
       self.secret = SecureRandom.hex(15)
       self.access_counter = 0
       
-      product_key.create!(:spree_digital_link_id => self.id, :variant => self.digital.variant, :line_item => self.line_item)
+      product_key.create!(:spree_digital_link_id => self.id)
     end
     
     # def create_product_key
