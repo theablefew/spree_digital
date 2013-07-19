@@ -9,7 +9,7 @@ module Spree
     validates :digital, :presence => true
     
     before_validation :set_defaults, :on => :create
-    after_save :create_product_key
+    # after_save :create_product_key
     
     # Can this link stil be used? It is valid if it's less than 24 hours old and was not accessed more than 3 times
     def authorizable?
@@ -28,13 +28,15 @@ module Spree
     def set_defaults
       self.secret = SecureRandom.hex(15)
       self.access_counter = 0
-    end
-    
-    def create_product_key
+      
       product_key.create!(:spree_digital_link_id => self.id, :variant => self.digital.variant, :line_item => self.line_item)
     end
+    
+    # def create_product_key
+    #   product_key.create!(:spree_digital_link_id => self.id, :variant => self.digital.variant, :line_item => self.line_item)
+    # end
 
-    attr_accessible :digital, :line_item, :secret, :product_key
+    attr_accessible :digital, :line_item, :secret
 
   end
 end
