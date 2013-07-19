@@ -33,11 +33,7 @@ module Spree
           :activation_count => 0,
           :activated => false,
           :downloaded => false,
-          :product_id => self.line_item.variant.product_id,
-          :variant_id => self.line_item.variant.id,
-          :order_id => self.line_item.order.id,
-          :user_id => self.line_item.order.user_id,
-          :sku => self.line_item.variant.sku,
+          :variant_id => self.digital.variant_id,
           :spree_digital_link_id => self.id
       )
       p.save!
