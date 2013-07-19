@@ -29,7 +29,7 @@ module Spree
       self.key_is_valid => true, 
       self.activation_count => 0,
       self.activated => false,
-      self.downloaded => false
+      self.downloaded => 0
     end
         
   end
