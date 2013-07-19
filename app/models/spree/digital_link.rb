@@ -3,11 +3,13 @@ module Spree
     
     belongs_to :digital
     belongs_to :line_item
+    has_one :product_key
     
     validates_length_of :secret, :is => 30
     validates :digital, :presence => true
     
     before_validation :set_defaults, :on => :create
+    after_save :create_product_key
     
     # Can this link stil be used? It is valid if it's less than 24 hours old and was not accessed more than 3 times
     def authorizable?
@@ -26,20 +28,13 @@ module Spree
     def set_defaults
       self.secret = SecureRandom.hex(15)
       self.access_counter = 0
-      
-      p = Spree::ProductKey.new( 
-          :content => SecureRandom.uuid.upcase, 
-          :key_is_valid => true, 
-          :activation_count => 0,
-          :activated => false,
-          :downloaded => false,
-          :variant_id => self.digital.variant_id,
-          :spree_digital_link_id => self.id
-      )
-      p.save!
+    end
+    
+    def create_product_key
+      product_key.create!(:digital_link => self, :variant => self.digital.variant, :line_item => self.line_item)
     end
 
-    attr_accessible :digital, :line_item, :secret
+    attr_accessible :digital, :line_item, :secret, :product_key
 
   end
 end
