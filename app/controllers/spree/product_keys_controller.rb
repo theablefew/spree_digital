@@ -17,20 +17,20 @@ module Spree
   
     def key_validation(key)
       @key = ProductKey.where(:content => key).first
-      if @key && @key.activation_count.nil?
-        @key.activation_count = 1
-        @key.activated = true
-        @key.save!
-        return true
-      elsif @key && @key.activation_count < 5
+      if @key && @key.activation_count < 5
         @key.activation_count += 1
         @key.activated = true
         @key.save!
+        
+        link = @key.digital_link
+        line = link.line_item
+        order = line.order
+        order.shipment_state = "shipped"
+        order.save!
         return true
       else
         return false
       end
     end
-      
   end
 end
