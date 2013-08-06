@@ -1,5 +1,6 @@
 <% if digital.attachment_file_name.present? %>
   <%= digital.attachment_file_name %> (<%= number_to_human_size(digital.attachment_file_size) %>)
 <% else %>
-  <%=t 'broken_file' %>
+  This version has no file attachment
 <% end %>
+<%= digital.linkable_url %>

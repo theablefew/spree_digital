@@ -5,12 +5,12 @@
       <legend><%= Spree::Variant.model_name.human %> "<%= variant.options_text %>"</legend>
       
       <%= f.field_container :current_file do %>
-      <strong><%=t 'files' %>:</strong>
+      <strong>Attachments:</strong>
       <% if variant.digital? %>
       <ul>
         <% variant.digitals.each do |digital| %>
         <li>
-         <%= render digital %>&nbsp;&nbsp;
+         <%= render digital %>
          <%= link_to t("delete_file"), admin_product_digital_url(@product, digital), :confirm => t('delete_file_cofirmation', :filename => digital.attachment_file_name), :method => :delete %>
        </li>
        <% end %>
@@ -25,10 +25,14 @@
       <%= f.label :file, t("new_file") %> <span class="required">*</span><br/>
       <%= f.file_field :attachment %>
       <% end %>
-
       <%= hidden_field_tag 'digital[variant_id]', variant.id %>
+      <%= f.field_container :url do %>
+      <%= f.label "Goto Meeting URL" %>
+      <%= f.text_field :linkable_url %>
+      <% end %>
 
-      <%= button t('spree_digital.upload') %>
+
+      <%= button "Save" %>
     </p>
 
   </fieldset>

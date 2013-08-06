@@ -1,5 +1,8 @@
 <% if digital.attachment_file_name.present? %>
-  <%= digital.attachment_file_name %> (<%= number_to_human_size(digital.attachment_file_size) %>)
+  <b>Attachment:</b><%= digital.attachment_file_name %> (<%= number_to_human_size(digital.attachment_file_size) %>)
 <% else %>
-  <%=t 'broken_file' %>
+  <p><b>Attachment:</b> This version has no file attachment</p>
+<% end %>
+<% if digital.linkable_url %>
+ <p><b>Link URL:</b> <%= link_to digital.linkable_url, digital.linkable_url %></p>
 <% end %>
